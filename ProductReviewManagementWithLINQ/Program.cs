@@ -38,6 +38,8 @@ namespace ProductReviewManagementWithLINQ
             management.SelectedRecords(productReviewList);
             Console.WriteLine("...........................................................");
             management.RetrieveCountOfRecords(productReviewList);
+            Console.WriteLine("...........................................................");
+            management.RetrieveOnlyProductId(productReviewList);
         }
     }
 }

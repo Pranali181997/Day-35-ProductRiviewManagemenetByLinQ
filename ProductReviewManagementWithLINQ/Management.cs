@@ -37,6 +37,7 @@ namespace ProductReviewManagementWithLINQ
                     Console.WriteLine($"ProductID:{v.ProductID}\tUserID:{v.UserID}\tRating:{v.Rating}\tReview:{v.Review}\tIsLike:{v.isLike}");
                 }
             }
+        //UC-4
         public void RetrieveCountOfRecords(List<ProductReview> listReview)
         {
             var recordedData = listReview.GroupBy(x => x.ProductID).Select(x => new { ProductID = x.Key, Count = x.Count() });
@@ -46,6 +47,16 @@ namespace ProductReviewManagementWithLINQ
             foreach (var v in recordedData)
             {
                 Console.WriteLine($"ProductID:{v.ProductID},ReviewCount:{v.Count}");
+            }
+        }
+        //UC-5
+        public void RetrieveOnlyProductId(List<ProductReview> listReview)
+        {
+            var recordedData = from ProductReview in listReview select (ProductReview.ProductID, ProductReview.Review);
+
+            foreach (var v in recordedData)
+            {
+                Console.WriteLine("Product Id : " + v.ProductID + " " + "Review are : " + v.Review);
             }
         }
     }
