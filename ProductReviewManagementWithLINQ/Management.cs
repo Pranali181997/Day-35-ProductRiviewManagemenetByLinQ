@@ -20,8 +20,23 @@ namespace ProductReviewManagementWithLINQ
 
             foreach (var v in recordedData)
             {
-                Console.WriteLine($"ProductID:{v.ProductID}\tUserID:{v.UserID}\tRating:{v.Rating}\tReview:{v.Review}\tIsLike:{v.isLike}");
+                Console.WriteLine($"ProductID:{v.ProductID} \t UserID:{v.UserID} \t Rating:{v.Rating}\t Review:{v.Review} \t IsLike:{v.isLike}");
             }
         }
+            //UC-3
+            public void SelectedRecords(List<ProductReview> listReview)
+            {
+                var recordedData = (from productReviews in listReview
+                                    where (productReviews.ProductID == 1 || productReviews.ProductID == 4 || productReviews.ProductID == 9) && productReviews.Rating > 3
+                                    select productReviews);
+
+                Console.WriteLine("\nProducts with rating greater than 3 and id=1 or 4 or 9 are:");
+
+                foreach (var v in recordedData)
+                {
+                    Console.WriteLine($"ProductID:{v.ProductID}\tUserID:{v.UserID}\tRating:{v.Rating}\tReview:{v.Review}\tIsLike:{v.isLike}");
+                }
+            }
+        
     }
 }
