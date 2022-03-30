@@ -42,6 +42,8 @@ namespace ProductReviewManagementWithLINQ
             management.RetrieveOnlyProductId(productReviewList);
             Console.WriteLine("...........................................................");
             management.SkipTopFiveRecords(productReviewList);
+            Console.WriteLine("...........................................................");
+            ProductReviewDataTable.AddDataIntoDataTable();
         }
     }
 }
