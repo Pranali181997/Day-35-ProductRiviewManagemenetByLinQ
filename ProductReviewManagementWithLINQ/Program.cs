@@ -44,6 +44,10 @@ namespace ProductReviewManagementWithLINQ
             management.SkipTopFiveRecords(productReviewList);
             Console.WriteLine("...........................................................");
             ProductReviewDataTable.AddDataIntoDataTable();
+            Console.WriteLine("...........................................................");
+            ProductReviewDataTable.RetrieveAllRecordsWhoseIsLikeIsTrue();
+            Console.WriteLine("...........................................................");
+            ProductReviewDataTable.GetAverageOfEachProductId();
         }
     }
 }

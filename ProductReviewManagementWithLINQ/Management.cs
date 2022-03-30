@@ -71,7 +71,5 @@ namespace ProductReviewManagementWithLINQ
 
             }
         }
-        //UC-7
-
     }
 }
