@@ -8,6 +8,7 @@ namespace ProductReviewManagementWithLINQ
         static void Main(string[] args)
         {
             Console.WriteLine("Hello Welocome to Product Review management problem statement!");
+            
 
             List<ProductReview> productReviewList = new List<ProductReview>()
             {
@@ -26,6 +27,13 @@ namespace ProductReviewManagementWithLINQ
                 new ProductReview() { ProductID = 15, UserID = 10, Rating = 4, Review = "nice", isLike = true },
                 new ProductReview() { ProductID = 16, UserID = 10, Rating = 4, Review = "nice", isLike = true },
             };
+            foreach (var list in productReviewList)
+            {
+                Console.WriteLine("ProductID: " + list.ProductID + "UserId: " + list.UserID + "Rating: " + list.Rating
+                    + "Review: " + list.Review + "IsLike: " + list.isLike);
+            }
+            Management management = new Management();
+            management.TopRecords(productReviewList);
         }
     }
 }
