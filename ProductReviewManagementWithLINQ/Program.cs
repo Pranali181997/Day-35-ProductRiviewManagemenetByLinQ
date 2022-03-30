@@ -36,6 +36,8 @@ namespace ProductReviewManagementWithLINQ
             management.TopRecords(productReviewList);
             Console.WriteLine("...........................................................");
             management.SelectedRecords(productReviewList);
+            Console.WriteLine("...........................................................");
+            management.RetrieveCountOfRecords(productReviewList);
         }
     }
 }
