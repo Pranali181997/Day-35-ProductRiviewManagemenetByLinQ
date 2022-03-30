@@ -52,12 +52,57 @@ namespace ProductReviewManagementWithLINQ
         //UC-10
         public static void GetAverageOfEachProductId()
         {
-            var avgTable = productDataTable.AsEnumerable().GroupBy(r => r.Field<int>("ProductId")).Select(x => new {ProductId=x.Key, Average = x.Average(r => r.Field<int>("Rating")) });
+            var avgTable = productDataTable.AsEnumerable().GroupBy(r => r.Field<int>("ProductId")).Select(x => new { ProductId = x.Key, Average = x.Average(r => r.Field<double>("Rating")) });
             Console.WriteLine("\n ProductID and Average Rating are");
-            foreach(var v in avgTable)
+            foreach (var v in avgTable)
             {
-                Console.WriteLine($"ProductId :{v.ProductId} ,AverageRating: {v.Average}" );
+                Console.WriteLine($"ProductId :{v.ProductId} ,AverageRating: {v.Average}");
+            }
+        }
+        //UC-11
+        public static void RetrieveWhosMesgNice(List<ProductReview> productReviewList)
+        {
+            //var MesgNice = from Review in productDataTable.AsEnumerable()
+            //where Review.Field<string>("Review").Equals("Nice") select Review;  
+            //Console.WriteLine("\n ProductID and Review are");
 
+            //    Console.WriteLine($"ProductID:{v.Field<int>("ProductId")}\tUserID:{v.Field<int>("UserId")}\tRating:{v.Field<double>("Rating")}\tReview:{v.Field<string>("Review")}\tIsLike:{v.Field<bool>("IsLike")}");
+
+            //}
+            foreach (var list in (from Review in productDataTable.AsEnumerable()
+                               where Review.Field<string>("Review").Equals("Nice")
+                             select Review))
+            {
+                Console.WriteLine($"ProductID:{list.Field<int>("ProductId")}\tUserID:{list.Field<int>("UserId")}\tRating:{list.Field<double>("Rating")}\tReview:{list.Field<string>("Review")}\tIsLike:{list.Field<bool>("IsLike")}");
+            }
+        }
+        //UC-12
+        public static void AddAndGetUserIdOnly10()
+        {
+            IList<ProductReview> productReviews = new List<ProductReview>();
+            List<string> reviewList = new List<string> { "good", "bad", "nice" };
+            Random random = new Random();
+           for(int i = 1; i < 25; i++)
+            {
+                ProductReview reviews = new ProductReview();
+                reviews.ProductID = random.Next(1, 10);
+                reviews.UserID = 10;
+                reviews.Rating = random.Next(1, 6);
+                reviews.Review = reviewList[random.Next(reviewList.Count)];
+                reviews.isLike = Convert.ToBoolean(random.Next(2));
+                productReviews.Add(reviews);
+            }
+           foreach(var reviews in productReviews)
+            {
+                productDataTable.Rows.Add(reviews.ProductID,reviews.UserID,reviews.Rating,reviews.Review,reviews.isLike);
+            }
+            var reviewTable = (from reviews in productDataTable.AsEnumerable()
+                               where reviews.Field<int>("UserId").Equals(10)
+                               select reviews).OrderBy(x => x.Field< double > ("Rating"));
+            Console.WriteLine($"\nProductId \t UserId \t Rating \t Review \t isLike");
+            foreach(var review in reviewTable)
+            {
+                Console.WriteLine($"ProductID:{review.Field<int>("ProductId")}\tUserID:{review.Field<int>("UserId")}\tRating:{review.Field<double>("Rating")}\tReview:{review.Field<string>("Review")}\tIsLike:{review.Field<bool>("IsLike")}");
             }
         }
     }

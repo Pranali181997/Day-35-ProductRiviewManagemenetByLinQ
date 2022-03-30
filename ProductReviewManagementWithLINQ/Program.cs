@@ -48,6 +48,11 @@ namespace ProductReviewManagementWithLINQ
             ProductReviewDataTable.RetrieveAllRecordsWhoseIsLikeIsTrue();
             Console.WriteLine("...........................................................");
             ProductReviewDataTable.GetAverageOfEachProductId();
+            Console.WriteLine("...........................................................");
+            ProductReviewDataTable.RetrieveWhosMesgNice(productReviewList);
+            Console.WriteLine("...........................................................");
+            ProductReviewDataTable.AddAndGetUserIdOnly10();
+
         }
     }
 }

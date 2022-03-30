@@ -67,7 +67,7 @@ namespace ProductReviewManagementWithLINQ
             foreach (var list in recordedData)
             {
                 Console.WriteLine("ProductID: " + list.ProductID + " " + "UserId: " + list.UserID + " " + "Rating: " + list.Rating + " "
-          + "Review: " + list.Review + " " + "IsLike: " + list.isLike);
+             + "Review: " + list.Review + " " + "IsLike: " + list.isLike);
 
             }
         }
